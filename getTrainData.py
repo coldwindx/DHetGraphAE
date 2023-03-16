@@ -53,7 +53,6 @@ exec_set = list()
 print("正在获取进程链集合")
 count = 0
 # 处理进程日志
-# for line in open('/home/ypd-23-teacher-2/hzq/data/exec_for_train.txt'):
 for line in open('./data/exec_for_train.txt', encoding='gbk', errors='ignore'):
     field = line.strip('\n').split('$%')
     if len(field) == 5:
@@ -62,7 +61,6 @@ for line in open('./data/exec_for_train.txt', encoding='gbk', errors='ignore'):
     if count % 10000 == 0:
         print('进程已处理行数：', count)
 # 处理文件日志
-# for line in open('/home/ypd-23-teacher-2/hzq/data/file_for_train.txt'):
 for line in open('./data/file_for_train.txt', encoding='gbk', errors='ignore'):
     field = line.strip('\n').split('$%')
     if len(field) == 5:
@@ -131,10 +129,6 @@ for key in exec_child.keys():
 for key in exec_child_all.keys():
     exec_child_all[key] = list(set(exec_child_all[key]))
 
-# tree_size = [len(exec_child_all[i]) if i in exec_child_all else 1 for i in root_node]
-# tmp = list(set(tree_size))
-# tmp.sort()
-# tree_size_distribute = [[i, tree_size.count(i)] for i in tmp]
 # 构造App邻接矩阵
 row = []
 col = []
@@ -151,7 +145,7 @@ matrix_exec = matrix_exec.tocsr()
 file_set = list()
 print("正在获取文件集合")
 count = 0
-# for line in open('/home/ypd-23-teacher-2/hzq/data/file_for_train.txt'):
+
 for line in open('./data/file_for_train.txt', encoding='gbk', errors='ignore'):
     field = line.strip('\n').split('$%')
     if len(field) == 5:
@@ -175,7 +169,7 @@ file_access = dict()
 print("正在获取文件访问关系")
 count = 0
 count_exec = 0      # 记录没有ID的进程个数（没用上）
-# for line in open('/home/ypd-23-teacher-2/hzq/data/file_for_train.txt'):
+
 for line in open('./data/file_for_train.txt', encoding='gbk', errors='ignore'):
     field = line.strip('\n').split('$%')
     if len(field) == 5:
@@ -241,7 +235,7 @@ for i in root_node:     # 遍历所有的进程节点
         file_mask = _make_mask(access_file_node, len(file_set))
         file_sub_adj = file_sub_adj.T[file_mask].T
         file_sub_feature = file_feature[file_mask]
-    # to-do:WTF?
+
     exec_sub_adj = np.where(exec_sub_adj.toarray() > 0, 1, 0)
     file_sub_adj = np.where(file_sub_adj.toarray() > 0, 1, 0)
     # 对角线归0

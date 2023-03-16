@@ -12,9 +12,21 @@ The host-based intrusion detection system (HIDS) is widely used to safeguard the
 ![DHGraphAE](framework.png "the framework of DHGraphAE")
 
 ## Requirements
-python==3.7.0
-PyTorch=1.7.1
+- python==3.7.0
+- PyTorch=1.7.1
 
-## Usage
-```python run.py```
+## Dataset
+- data: The **data** folder holds our original log files.Our dataset comes from a real enterprise environment, so we only provide some samples for illustration purposes.We use "RANDOM" instead of sensitive information.
+- train_data: The **train_data** folder holds the training data set generated after preprocessing, containing information about the attributes of processes and files, as well as information about process-process and process-file relationships.Due to the file size, the complete training data is stored on Google Cloud Drive and uploaded subsequently.
+- test_data: The **test_data** folder holds the testing data set generated after preprocessing, containing information about the attributes of processes and files, as well as information about process-process and process-file relationships.Please extract the zip package in the directory and overwrite this folder.
+
+## Code
+- model.py is the script for DHetGraphAE;
+- getTrainData.py and getTestData.py is the scripts for pre-processing;
+- train.py and test.py is the scripts to train and test our model;
+- ROC.py is the script for our model to plot the ROC curve;
+
+
+If you have any other related needs, please contact us by **zhulin@bupt.edu.cn**!
+
 

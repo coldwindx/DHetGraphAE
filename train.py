@@ -1,17 +1,14 @@
 import torch
 import torch.optim as optim
-import matplotlib.pyplot as plt
 import numpy as np
 import random
-import scipy.sparse as sp
 from load_data import load_train_data
-from model_diff_lay import HetGraphAE2 as model
+from model import DHetGraphAE as model
 
-# from model.model import Encoder
 
 data_num = 323538
 loss_record = []
-model_name = 'HetGraphAE2'
+model_name = 'DHetGraphAE'
 big_graph = [187949,268769]
 big_graph = set(big_graph)
 
@@ -49,13 +46,9 @@ class Train:
         else:
             re_exec_adj_ = re_exec_adj * mask
         loss_adj_exec = self.loss_adj(re_exec_adj_, raw_exec_adj)
-        # print(re_exec_adj_)
-        # print(raw_exec_adj)
         loss_adj_file = self.loss_adj(re_file_adj, file_adj)
         loss_feature = self.loss_feature(re_exec_feature, exec_feature)
-        # print('loss_adj_exec', loss_adj_exec)
-        # print('loss_adj_file', loss_adj_file)
-        # print('loss_feature', loss_feature * 100)
+
         return loss_adj_exec + loss_adj_file + loss_feature * 50
 
     def train(self, t=1000):
@@ -87,9 +80,7 @@ class Train:
                     if i % 100 == 0:
                         print("第%s次迭代, 第%s个batch loss:" % (times, i), flush=True)
                         print(loss, flush=True)
-                    # if count == 1000:
-                    #     torch.save(self.encoder, 'save_model/' + model_name + str(times))
-                    #     count = 0
+
                     del loss
                     torch.cuda.empty_cache()
                     if torch.cuda.is_available() and not is_cuda:
@@ -103,7 +94,6 @@ class Train:
         except KeyboardInterrupt or MemoryError or RuntimeError:
             torch.save(self.encoder, 'save_model/' + model_name)
         return
-
 
 SEED = 666
 random.seed(SEED)
