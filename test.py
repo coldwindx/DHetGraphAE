@@ -2,7 +2,6 @@ import torch
 import scipy.sparse as sp
 import numpy as np
 
-
 def getAUC(loss, label):
     p_sum = sum(label)
     n_sum = len(label) - p_sum
@@ -40,7 +39,7 @@ def getAUC(loss, label):
             pre_x = FPR[i]
     print("AUC:", AUC)
 
-model_name = 'HetGraphAE212'
+model_name = 'DHetGraphAE12'
 data_num = 2668
 label = np.load('test_data/label.npy')
 model = torch.load('save_model/' + model_name)
@@ -68,6 +67,6 @@ with torch.no_grad():
         anomaly_score.extend(loss.cpu().tolist())
         label_new.extend([label[i]] * len(loss))
 anomaly_score = np.array(anomaly_score)
-np.save('test_anomaly_score/' + model_name, anomaly_score)
-np.save('test_anomaly_score/' + 'label', label_new)
+np.save('scores/' + model_name, anomaly_score)
+np.save('scores/' + 'label', label_new)
 getAUC(anomaly_score, label_new)
