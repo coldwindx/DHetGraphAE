@@ -17,8 +17,8 @@ The host-based intrusion detection system (HIDS) is widely used to safeguard the
 
 ## Dataset
 - data: The **data** folder holds our original log files.Our dataset comes from a real enterprise environment, so we only provide some samples for illustration purposes.We use "RANDOM" instead of sensitive information.
-- train_data: The **train_data** folder holds the training data set generated after preprocessing, containing information about the attributes of processes and files, as well as information about process-process and process-file relationships.Due to the file size, the complete training data is stored on Google Cloud Drive and uploaded subsequently.
-- test_data: The **test_data** folder holds the testing data set generated after preprocessing, containing information about the attributes of processes and files, as well as information about process-process and process-file relationships.Please extract the zip package in the directory and overwrite this folder.
+- train_data: The **train_data** folder holds the training data set generated after preprocessing, containing information about the feature vectors of processes and files, as well as information about process-process and process-file relationships.Due to the file size, the complete training data is stored on Google Cloud Drive and uploaded subsequently.
+- test_data: The **test_data** folder holds the testing data set generated after preprocessing, containing information about the feature vectors of processes and files, as well as information about process-process and process-file relationships.Please extract the zip package in the directory and overwrite this folder.
 
 ## Code
 - model.py is the script for DHetGraphAE;
