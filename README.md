@@ -29,4 +29,3 @@ The host-based intrusion detection system (HIDS) is widely used to safeguard the
 
 If you have any other related needs, please contact us by **zhulin@bupt.edu.cn**!
 
-
